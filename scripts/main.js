@@ -1,4 +1,30 @@
-var pageDict = {index: "main", about: "about"};
+var pageDict = {index: "main", about: "about",videos:'videos'};
+var tooltipTimeout;
+
+$(document).ready(function(){
+	navbarActiveSet();
+	console.log("Document Ready");
+	
+	var delay=1000, setTimeoutConst;
+	
+	$('#resultsTable').on("mouseenter","tr",function()
+	{
+		var elem = $(this)
+		setTimeoutConst = setTimeout(function(){
+			//do something
+			elem.find('td:last').stop().fadeIn();
+		}, delay)
+		
+	});
+	
+	$('#resultsTable').on("mouseleave","tr",function()
+	{
+		clearTimeout(setTimeoutConst );
+		$(this).find('td:last').stop().fadeOut();
+	});	
+});	
+
+
 
 function onSuccess(googleUser) {
 	console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
@@ -109,27 +135,16 @@ function navbarActiveSet() {
 	
 }
 
-$('document').ready(function(){
-	navbarActiveSet();
-	console.log("Document Ready");
-	try {
-		return 'localStorage' in window && window['localStorage'] !== null;
-		} catch (e) {
-		console.log("no stroage")
-	}
-	
-});	
-
-$(document).on("mouseenter","tr",function()
-{
+/* $(document).on("mouseenter","tr",function()
+	{
 	$(this).find('td:last').stop().fadeIn();
-});
-
-$(document).on("mouseleave","tr",function()
-{
+	});
+	
+	$(document).on("mouseleave","tr",function()
+	{
 	$(this).find('td:last').stop().fadeOut();
-});
-
+	});
+*/
 function increaseAmmount(buttonElement)
 {
 	var tdValue = $(buttonElement.parentNode.parentNode).find('td:first').text();

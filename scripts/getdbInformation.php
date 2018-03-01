@@ -2,7 +2,7 @@
 	include "../../inc/dbinfo.inc";
 	include "tescoApi.php";
 	require_once '../vendor/autoload.php';
-	if (isset($_POST)) {
+	if (isset($_POST["idtoken"]) || !empty($_POST)) {
 		
 		$id_token = $_POST["idtoken"];
 		$client = new Google_Client(["client_id" => CLIENT_ID2]);
@@ -32,8 +32,12 @@
 		{
 			
 			echo "Incorect ID Token";
-			return;
+			header("Location: ../index.php");
 		}
+	}
+	else
+	{
+		header("Location: ../index.php");
 	}
 	
 	function getSqlInformation($userid)
@@ -174,7 +178,7 @@
 			mysqli_stmt_execute($stmt);
 		}
 		/* $sql = "INSERT INTO Stock (Pan,Amount,purchaseDate,expiryDate,idToken) VALUES({$pan}, {$amount}, STR_TO_DATE('{$purchaseDate}','%Y/%m/%d'),STR_TO_DATE('{$expiryDate}','%Y/%m/%d') , {$userid}) on duplicate key update Amount = {$amount} + Amount" or die(mysqli_error($connection));         
-			mysqli_query($connection,$sql); */
+		mysqli_query($connection,$sql); */
 		$tescoResult = getTescoApi($pan);
 		$decodedJson = json_decode($tescoResult);		
 		

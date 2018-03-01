@@ -1,5 +1,8 @@
 var informationJson = '';
 
+window.onbeforeunload = function() {
+  localStorage.removeItem("detailedItem");
+}
 $('document').ready(function()
 {
 	informationJson = JSON.parse(localStorage.getItem("detailedItem"));

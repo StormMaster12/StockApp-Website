@@ -1,14 +1,7 @@
 <html>
 	<?php include "../inc/dbinfo.inc"; ?>
     
-	<head>
-		<meta name="google-signin-client_id" content="50844503444-be95c6rb3kt3vjqsmue2ss4osic08atg.apps.googleusercontent.com">
-		<link href="css/stylemain.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		
-	</head>
+	<?php include "css/templates/head.html" ?>
 	<body>
 		<?php include 'css/templates/header.html' ?>
 		<div class="container" style="display:block;">
